@@ -6,9 +6,9 @@ namespace CLustAlgo;
 abstract class AbstractAlgo
 {
     private List<Point>? points;
-    // вынести как пример на принцип единственной ответсвенности
+    // вынести как пример на принцип единственной ответсвенности (Single Responsibility Principle)
     // public abstract void PrintToFile();
-	public abstract void PrintToConsole();
+    public abstract void PrintToConsole();
     public List<Point>? GetPoints()
     {
         return this.points;
@@ -32,11 +32,6 @@ class Wave : AbstractAlgo
     {
         Console.WriteLine("rrfr");
     }
-    public override void PrintToFile()
-    {
-        Console.WriteLine("rrfr");
-    }
-
     public void FireNeighbours(int p_lable, int p_index)
     {
         if (this.points[p_index].GetLable() == 0)
@@ -62,7 +57,7 @@ class Wave : AbstractAlgo
             FireNeighbours(c_lab, index);
             c_lab++;
         }
-        PrintToFile();
+        //PrintToFile();
     }
     public bool CheckAllClusters()
     {
@@ -98,10 +93,6 @@ class Hierarchical : AbstractAlgo
         this.matrix = new List<List<double>>();
     }
     public override void PrintToConsole()
-    {
-        Console.WriteLine("rrfr");
-    }
-    public override void PrintToFile()
     {
         Console.WriteLine("rrfr");
     }
