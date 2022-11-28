@@ -21,11 +21,15 @@ class Wave : AbstractAlgo
     //private List<List<double>>? matrix; 
     private double eps;
 
+    public Wave()
+    {
+        this.points = new List<Point>();
+        this.eps= 0.0;
+    }
     public Wave(List<Point> points, double eps)
     {
         this.points = points;
         this.eps = eps;
-        //this.matrix = new List<List<double>>();
     }
 
     public override void PrintToConsole()
@@ -57,7 +61,6 @@ class Wave : AbstractAlgo
             FireNeighbours(c_lab, index);
             c_lab++;
         }
-        //PrintToFile();
     }
     public bool CheckAllClusters()
     {
@@ -86,6 +89,12 @@ class Hierarchical : AbstractAlgo
     private List<Point> points;
     private List<List<double>> matrix;
 
+    public Hierarchical()
+    {
+        this.num = 0;
+        this.points = new List<Point>();
+        this.matrix = new List<List<double>>();
+    }
     public Hierarchical(List<Point> points, int num)
     {
         this.points = points;

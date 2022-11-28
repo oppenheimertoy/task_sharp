@@ -17,9 +17,9 @@ abstract class AbstractCloud
     protected const double pi = 3.141592653589793;
 
     public abstract void RotateCenter(double phix);
-    public abstract void RotateDecartCenter();
-    public abstract void MoveX();
-    public abstract void MoveY();
+    public abstract void RotateDecartCenter(double phix);
+    public abstract void MoveX(double dx);
+    public abstract void MoveY(double dy);
 }
 
 class OvalCreator : AbstractCreator
@@ -88,6 +88,10 @@ class Oval : AbstractCloud
             }
         }
     }
+    public List<Point> GetPoints()
+    {
+        return this.points;
+    }
     public void Show()
     {
         for (int i = 0; i < this.points.Count; ++i)
@@ -108,16 +112,31 @@ class Oval : AbstractCloud
             this.points[i] = new Point(x2, y2);
         }
     }
-    public override void RotateDecartCenter()
+    public override void RotateDecartCenter(double phix)
     {
-
+        phix = phix * (180 / pi);
+        double x1, y1, x2, y2;
+        for (int i = 0; i < this.points.Count; ++i)
+        {
+            x1 = this.points[i].GetXCord();
+            y1 = this.points[i].GetYCord();
+            x2 = ((x1) * Math.Cos(phix)) + ((y1) * Math.Sin(phix)) + this.xc;
+            y2 = ((x1) * Math.Sin(phix)) - ((y1) * Math.Cos(phix)) + this.yc;
+            this.points[i] = new Point(x2, y2);
+        }
     }
-    public override void MoveX()
+    public override void MoveX(double dx)
     {
-
+        for (int i = 0; i < this.points.Count; ++i)
+        {
+            this.points[i].SetAccureX(dx);
+        }
     }
-    public override void MoveY()
+    public override void MoveY(double dy)
     {
-
+        for (int i = 0; i < this.points.Count; ++i)
+        {
+            this.points[i].SetAccureY(dy);
+        }
     }
 }
